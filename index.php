@@ -1,11 +1,13 @@
 <?php 
 include("conexao.php"); // Inclui o arquivo 'conexao.php' pra esse arquivo
 
+$erro = "";
+
 if (isset($_POST['email']) || isset($_POST['senha'])){ // se existirem definições para email e senha, adentre o bloco de código
     if(strlen($_POST['email']) == 0){ // se o tamanho de email for igual a 0, mostre um aviso para preencher a senha.
-        echo 'Preencha seu e-mail';
+        $erro = 'Preencha seu e-mail';
     } else if (strlen($_POST['senha']) == 0){ // idem
-        echo 'Preencha seu senha';
+        $erro = 'Preencha sua senha';
     } else{ // se der tudo certo
         $email = $mysqli->real_escape_string($_POST['email']); // adiciona o email protegido de caracteres especiais a uma variável.
         $senha = $mysqli->real_escape_string($_POST['senha']); // idem
@@ -28,7 +30,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])){ // se existirem definiç�
             
             header('Location: painel.php'); // redireciona para a pagina 'painel.php'
         } else{ // caso o não tiver nenhuma ou mais de uma linha, retorna
-            echo "Falha ao logar. E-mail ou senha incorretos.";
+            $erro = "Falha ao logar. E-mail ou senha incorretos.";
         }
     }
 }
@@ -67,6 +69,12 @@ if (isset($_POST['email']) || isset($_POST['senha'])){ // se existirem definiç�
                 <label for="password">SENHA</label><br>
                 <input id="password" name="senha" type="password">
             </div>
+
+            <?php if (!empty($erro)): ?>
+                <div class="mensagem-erro" role="alert">
+                    <?php echo htmlspecialchars($erro); ?>
+                </div>
+            <?php endif; ?>
 
             <button type="submit">ENTRAR</button>
         </form>

@@ -41,12 +41,14 @@
   padding: 2rem 1rem;
   background-color: #0d0d0d;
   height: 100%;
+  align-items: center;
 }
 
 .login-baixo form{
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: min(420px, 100%);
 }
 
 .login-baixo form input{
@@ -57,6 +59,17 @@
   color: #b0b0b0;
   border: 1px solid rgb(186, 186, 186);
   border-radius: 10px;
+}
+
+.mensagem-erro{
+  background-color: rgba(231, 0, 12, 0.12);
+  border: 1px solid rgba(231, 0, 12, 0.55);
+  color: #ff7d83;
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-align: center;
 }
 
 .login-baixo form button{
