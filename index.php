@@ -28,7 +28,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])){ // se existirem definiç�
             $_SESSION['user'] = $usuario['email']; // idem
             $_SESSION['nome'] = $usuario['nome']; // idem
             
-            header('Location: painel.php'); // redireciona para a pagina 'painel.php'
+            header('Location: home.php'); // redireciona para a pagina 'painel.php'
         } else{ // caso o não tiver nenhuma ou mais de uma linha, retorna
             $erro = "Falha ao logar. E-mail ou senha incorretos.";
         }
