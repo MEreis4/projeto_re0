@@ -19,11 +19,25 @@
         </div>
         <div class="sub-secoes">
             <span class="subtitulo">PRÓXIMAS</span>
+                <ul class="lista-card">
+                    <li class="card-base">        
+                        <div class="card-esq">🔥</div>
+                        <section class="card-dir">
+                            <span class="card-title">Churras do fim de semana</span>
+                            <span class="card-text data">29 out 2026</span>
+                            <span class="card-text hora">18:00</span> <br>
+                            <span class="card-text local">Casa do Rodrigo, SP</span>
+                        </section>
+                    </li>
+                </ul>
         </div>
         <div class="sub-secoes">
             <span class="subtitulo">HISTÓRICO</span>
         </div>
         <a href="logout.php">Fazer logout?</a>
     </div>
+    <!-- <nav class="navegacao">
+        <button type="button" class="nav-item">INICIO</button>
+    </nav> -->
 </body>
 </html>

@@ -11,6 +11,7 @@ body{
   min-width: 95%;
   height: 100%;
   overflow: hidden; 
+  padding: 0 1rem;
 }
 
 .sub-secoes{
@@ -36,3 +37,57 @@ h1{
 h3{
   color: gray;
 }
+
+/* cards */
+
+.lista-card{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin:.5rem
+}
+
+.card-base{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 6rem;
+}
+
+.card-base .card-esq{
+  display: flex;
+  background-color: red;
+  height: 100%;
+  width: 20%;
+  border-radius: 10px 0 0 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+.card-base .card-dir{
+  background-color: #0d0d0d;
+  height: 100%;
+  border-radius: 0 10px 10px 0;
+  padding: .5rem;
+  box-sizing: border-box;
+}
+
+.card-title{
+  font-size: 15px;
+  color: white;
+}
+.card-text{
+  font-size: 12px;
+  color: #5F5F5F;
+}
+
+.card-text.data::before{
+  content: "📆";
+}
+.card-text.hora::before{
+  content: "🕒";
+}
+.card-text.local::before{
+  content: "🚩";
+}
+
