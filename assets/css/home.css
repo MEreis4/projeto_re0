@@ -54,6 +54,14 @@ h3{
   height: 6rem;
 }
 
+.card-base.historico{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 6rem;
+  filter: brightness(.5);
+}
+
 .card-base .card-esq{
   display: flex;
   background-color: red;
@@ -91,3 +99,53 @@ h3{
   content: "🚩";
 }
 
+.navegacao{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 8rem;
+  background-color: #0d0d0d;
+  margin-top: 100%;
+  border-top: 1px solid #5F5F5F;
+}
+
+.navegacao .nav-item{
+  position: relative;
+  color: #e7000c;
+  cursor: pointer;
+  padding-top: 5%;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.navegacao .nav-item.inicio::before{
+  content: url('../img/home.svg');
+  width: 24px;
+  height: 24px;
+  filter: invert(15%) sepia(24%) saturate(1000) hue-rotate(367deg) brightness(104%) contrast(97%);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.navegacao .nav-item.nova::before{
+  content: url('../img/new.svg');
+  width: 24px;
+  height: 24px;
+  filter: invert(15%) sepia(24%) saturate(1000) hue-rotate(367deg) brightness(104%) contrast(97%);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.navegacao .nav-item.amigos::before{
+  content: url('../img/friends.svg');
+  width: 24px;
+  height: 24px;
+  filter: invert(15%) sepia(24%) saturate(1000) hue-rotate(367deg) brightness(104%) contrast(97%);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
