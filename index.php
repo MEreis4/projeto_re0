@@ -1,39 +1,6 @@
 <?php 
-include("conexao.php"); // Inclui o arquivo 'conexao.php' pra esse arquivo
+include("cadastro.php"); // Inclui o arquivo 'cadastro.php' pra esse arquivo
 
-$erro = "";
-
-if (isset($_POST['email']) || isset($_POST['senha'])){ // se existirem definições para email e senha, adentre o bloco de código
-    if(strlen($_POST['email']) == 0){ // se o tamanho de email for igual a 0, mostre um aviso para preencher a senha.
-        $erro = 'Preencha seu e-mail';
-    } else if (strlen($_POST['senha']) == 0){ // idem
-        $erro = 'Preencha sua senha';
-    } else{ // se der tudo certo
-        $email = $mysqli->real_escape_string($_POST['email']); // adiciona o email protegido de caracteres especiais a uma variável.
-        $senha = $mysqli->real_escape_string($_POST['senha']); // idem
-
-        $sql_code = "SELECT * FROM usuario WHERE email ='$email' AND senha='$senha'"; // salva o código que é enviado ao sql em uma variavel.
-        $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL:" . $mysqli->error); // faz uma busca no bd usando o código definido na variavel acima.
-
-        $quantidade = $sql_query->num_rows; // pega a quantidade de linhas adquiridas na busca
-
-        if($quantidade == 1){ // se tiver uma só linha, o código continua. Isto é feito porque não se pode existir duas linhas (duas contas) com os mesmos email e senhas.
-            $usuario = $sql_query->fetch_assoc(); // pega os dados da tabela dessa linha e transforma num array guardado na variavel 'usuarios'
-
-            if(!isset($_SESSION)){ //se não houver sessão iniciada, inicia uma.
-                session_start();
-            }
-
-            $_SESSION['id'] = $usuario['id']; // define que o id da sessão é o mesmo id do usuário que foi guardada no array criado acima
-            $_SESSION['user'] = $usuario['email']; // idem
-            $_SESSION['nome'] = $usuario['nome']; // idem
-            
-            header('Location: home.php'); // redireciona para a pagina 'painel.php'
-        } else{ // caso o não tiver nenhuma ou mais de uma linha, retorna
-            $erro = "Falha ao logar. E-mail ou senha incorretos.";
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -60,24 +27,47 @@ if (isset($_POST['email']) || isset($_POST['senha'])){ // se existirem definiç�
         </div>
     </div>
     <div class="login-baixo">
-        <form action="" method="POST">
-            <div class="gp-input">
-                <label for="email">E-MAIL</label><br>
-                <input id="email" name="email" type="email">
-            </div>
-            <div class="gp-input">
-                <label for="password">SENHA</label><br>
-                <input id="password" name="senha" type="password">
+        <div class="auth-shell" data-view="login">
+            <div class="auth-toggle" aria-label="Escolha entre logar e cadastrar">
+                <button type="button" class="active" data-auth-target="login" aria-pressed="true">Logar</button>
+                <button type="button" data-auth-target="cadastro" aria-pressed="false">Cadastrar</button>
             </div>
 
-            <?php if (!empty($erro)): ?>
-                <div class="mensagem-erro" role="alert">
-                    <?php echo htmlspecialchars($erro); ?>
+            <form class="auth-form login" action="" method="POST">
+                <div class="gp-input">
+                    <label for="email">E-MAIL</label>
+                    <input id="email" name="email" type="email" placeholder="seuemail@email.com">
                 </div>
-            <?php endif; ?>
+                <div class="gp-input">
+                    <label for="password">SENHA</label>
+                    <input id="password" name="senha" type="password" placeholder="Sua senha">
+                </div>
 
-            <button type="submit">ENTRAR</button>
-        </form>
+                <?php if (!empty($erro)): ?>
+                    <div class="mensagem-erro" role="alert">
+                        <?php echo htmlspecialchars($erro); ?>
+                    </div>
+                <?php endif; ?>
+
+                <button type="submit">ENTRAR</button>
+            </form>
+
+            <form class="auth-form cadastro" action="" method="POST" hidden>
+                <div class="gp-input">
+                    <label for="nome">NOME</label>
+                    <input id="nome" name="nome" type="text" placeholder="Seu nome">
+                </div>
+                <div class="gp-input">
+                    <label for="cadastro-email">E-MAIL</label>
+                    <input id="cadastro-email" name="cadastro-email" type="email" placeholder="seuemail@email.com">
+                </div>
+                <div class="gp-input">
+                    <label for="cadastro-senha">SENHA</label>
+                    <input id="cadastro-senha" name="cadastro-senha" type="password" placeholder="Crie uma senha">
+                </div>
+                <button type="submit">CADASTRAR</button>
+            </form>
+        </div>
     </div>
 </div>
 

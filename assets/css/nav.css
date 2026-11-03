@@ -1,0 +1,68 @@
+.navegacao {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    min-height: 6.5rem;
+    background: rgba(13, 13, 13, 0.96);
+    border-top: 1px solid var(--line);
+    backdrop-filter: blur(10px);
+    margin-top: auto;
+}
+
+.navegacao .nav-item {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-width: 5.5rem;
+    min-height: 4.5rem;
+    color: var(--muted-strong);
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: color 0.2s ease, opacity 0.2s ease;
+    opacity: 0.9;
+}
+
+.navegacao .nav-item::before {
+    content: "";
+    position: absolute;
+    top: 0.7rem;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    transform: translateX(-50%);
+    filter: brightness(0) saturate(100%) invert(38%) sepia(8%) saturate(9%) hue-rotate(0deg) brightness(105%) contrast(96%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.navegacao .nav-item.inicio::before {
+    background-image: url('../img/home.svg');
+}
+
+.navegacao .nav-item.nova::before {
+    background-image: url('../img/new.svg');
+}
+
+.navegacao .nav-item.amigos::before {
+    background-image: url('../img/friends.svg');
+}
+
+.navegacao .nav-item:hover,
+.navegacao .nav-item.active {
+    color: var(--red-soft);
+    opacity: 1;
+}
+
+.navegacao .nav-item:hover::before,
+.navegacao .nav-item.active::before {
+    filter: brightness(0) saturate(100%) invert(40%) sepia(90%) saturate(1471%) hue-rotate(345deg) brightness(104%) contrast(102%);
+}
